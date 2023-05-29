@@ -13,6 +13,8 @@ table(irisCluster$cluster, df$Species)
 
 clusplot(iris, irisCluster$cluster, color = T,shade = T,labels = 0,lines = 0)
 
+ggsave("irisCluster.png",last_plot(), width = 10, height = 7, dpi = 600)
+
 tot.withinss <- sapply(1:10, function(i) {
   irisCluster <- kmeans(df[,1:4], center=i, nstart=20)
   return(irisCluster$tot.withinss)
@@ -20,3 +22,6 @@ tot.withinss <- sapply(1:10, function(i) {
 
 
 plot(1:10, tot.withinss, type = "b",pch = 19, xlab = "Number of Clusters", ylab = "Total Within-Cluster Sum of Squares")
+
+ggsave("irisNoOfClusters.png",last_plot(), width = 10, height = 7, dpi = 600)
+
